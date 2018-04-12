@@ -1,0 +1,79 @@
+﻿@model IEnumerable<UTS_PLOO_151524032_YudisthiraPoyoh.Models.Supplier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+    @using (Html.BeginForm())
+    {
+    <p>
+        Supplier Name : @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+    }
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            No
+        </th>
+        <th>
+            Supplier Id
+        </th>
+        <th>
+            Supplier Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+@{ 
+    int i = 1;
+}
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @i
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supplier_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supplier_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.supplier_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.supplier_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.supplier_id })
+        </td>
+        @{ 
+            i++;
+        }
+    </tr>
+}
+
+</table>

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<UTS_PLOO_151524032_YudisthiraPoyoh.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    
+    @using (Html.BeginForm())
+    {
+    <p>
+        Products Name / Category / Supplier : @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+    }
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            No
+        </th>
+        <th>
+            Product ID
+        </th>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Category Name
+        </th>
+        <th>
+            Supplier Name
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Minimum Stock
+        </th>
+        <th></th>
+    </tr>
+
+@{
+    int i = 1;
+}
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @i
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.category_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier.supplier_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minimum_stock)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.product_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.product_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.product_id })
+        </td>
+        @{ 
+            i++;
+        }
+    </tr>
+}
+
+</table>
